@@ -10,6 +10,7 @@ const post = require("./routes/posts")
 const users = require("./routes/users")
 const cloudinary = require("cloudinary").v2
 const fileUpload = require("express-fileupload")
+const path=require("path")
 app.use(cors({
       origin: true,
       credentials: true
