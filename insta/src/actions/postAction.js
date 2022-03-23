@@ -55,7 +55,7 @@ const Axios = axios.create({
 export const newPostAction = (postDetails) => async (dispatch) => {
       try {
             dispatch({ type: CREATE_NEW_POST_REQUEST })
-            const { data } = await Axios.post("/post/newpost", postDetails)
+            const { data } = await Axios.post("/api/post/newpost", postDetails)
             dispatch({ type: CREATE_NEW_POST_SUCCESS, payload: data })
       } catch (error) {
             dispatch({ type: CREATE_NEW_POST_FAIL, payload: error })
@@ -64,7 +64,7 @@ export const newPostAction = (postDetails) => async (dispatch) => {
 export const updatePostAction = (id, form) => async (dispatch) => {
       try {
             dispatch({ type: UPDATE_LOGGED_USER_POST_REQUEST })
-            const { data } = await Axios.put(`/post/update/${id}`, form)
+            const { data } = await Axios.put(`/api/post/update/${id}`, form)
             dispatch({ type: UPDATE_LOGGED_USER_POST_SUCCESS, payload: data })
       } catch (error) {
             dispatch({ type: UPDATE_LOGGED_USER_POST_FAIL, payload: error })
@@ -73,7 +73,7 @@ export const updatePostAction = (id, form) => async (dispatch) => {
 export const getLoggedUserPostAction = () => async (dispatch) => {
       try {
             dispatch({ type: GET_LOGGED_USER_POST_REQUEST })
-            const { data } = await Axios.get("/user/posts")
+            const { data } = await Axios.get("/api/user/posts")
             dispatch({ type: GET_LOGGED_USER_POST_SUCCESS, payload: data.posts })
       } catch (error) {
             dispatch({ type: GET_LOGGED_USER_POST_FAIL, payload: error })
@@ -82,7 +82,7 @@ export const getLoggedUserPostAction = () => async (dispatch) => {
 export const getPostLikesUsersAction = (id) => async (dispatch) => {
       try {
             dispatch({ type: GET_LIKES_USERS_REQUEST })
-            const { data } = await Axios.get(`post/likes/${id}`)
+            const { data } = await Axios.get(`/api/post/likes/${id}`)
             dispatch({ type: GET_LIKES_USERS_SUCCESS, payload: data.users })
       } catch (error) {
             dispatch({ type: GET_LIKES_USERS_FAIL, payload: error })
@@ -91,7 +91,7 @@ export const getPostLikesUsersAction = (id) => async (dispatch) => {
 export const deletePostAction = (id) => async (dispatch) => {
       try {
             dispatch({ type: DELETE_LOGGED_USER_POST_REQUEST })
-            const { data } = await Axios.delete(`/post/delete/${id}`)
+            const { data } = await Axios.delete(`/api/post/delete/${id}`)
             dispatch({ type: DELETE_LOGGED_USER_POST_SUCCESS, payload: data.deletedPost })
       } catch (error) {
             dispatch({ type: DELETE_LOGGED_USER_POST_FAIL, payload: error })
@@ -100,7 +100,7 @@ export const deletePostAction = (id) => async (dispatch) => {
 export const getPostDetailsAction = (id) => async (dispatch) => {
       try {
             dispatch({ type: GET_POST_DETAILS_REQUEST })
-            const { data } = await Axios.get(`/post/${id}`)
+            const { data } = await Axios.get(`/api/post/${id}`)
             dispatch({ type: GET_POST_DETAILS_SUCCESS, payload: data.post })
       } catch (error) {
             dispatch({ type: GET_POST_DETAILS_FAIL, payload: error })
@@ -109,7 +109,7 @@ export const getPostDetailsAction = (id) => async (dispatch) => {
 export const getPostCommentsUsersAction = (id) => async (dispatch) => {
       try {
             dispatch({ type: GET_POST_COMMENTS_REQUEST })
-            const { data } = await Axios.get(`post/getcomments/${id}`)
+            const { data } = await Axios.get(`/api/post/getcomments/${id}`)
             dispatch({ type: GET_POST_COMMENTS_SUCCESS, payload: data.post })
       } catch (error) {
             dispatch({ type: GET_POST_COMMENTS_FAIL, payload: error })
@@ -118,7 +118,7 @@ export const getPostCommentsUsersAction = (id) => async (dispatch) => {
 export const postCommentAction = (id, comment) => async (dispatch) => {
       try {
             dispatch({ type: POSTING_COMMENT_REQUEST })
-            const { data } = await Axios.put(`/post/comment/${id}`, { comment })
+            const { data } = await Axios.put(`/api/post/comment/${id}`, { comment })
             dispatch({ type: POSTING_COMMENT_SUCCESS, payload: data })
       } catch (error) {
             dispatch({ type: POSTING_COMMENT_FAIL, payload: error })
@@ -127,7 +127,7 @@ export const postCommentAction = (id, comment) => async (dispatch) => {
 export const postCommentDeleteAction = (postId, commentId) => async (dispatch) => {
       try {
             dispatch({ type: POST_COMMENT_DELETE_REQUEST })
-            const { data } = await Axios.delete(`/post/comment/delete?postId=${postId}&commentId=${commentId}`)
+            const { data } = await Axios.delete(`/api/post/comment/delete?postId=${postId}&commentId=${commentId}`)
             dispatch({ type: POST_COMMENT_DELETE_SUCCESS, payload: data })
       } catch (error) {
             dispatch({ type: POST_COMMENT_DELETE_FAIL, payload: error })
@@ -136,7 +136,7 @@ export const postCommentDeleteAction = (postId, commentId) => async (dispatch) =
 export const postReplyOnCommentAction = (postId, commentId, reply) => async (dispatch) => {
       try {
             dispatch({ type: POSTING_REPLIES_ON_COMMENT_REQUEST })
-            const { data } = await Axios.put(`/post/replyon/${postId}/comment/${commentId}`, { reply })
+            const { data } = await Axios.put(`/api/post/replyon/${postId}/comment/${commentId}`, { reply })
             dispatch({ type: POSTING_REPLIES_ON_COMMENT_SUCCESS, payload: data })
       } catch (error) {
             dispatch({ type: POSTING_REPLIES_ON_COMMENT_FAIL, payload: error })
@@ -145,7 +145,7 @@ export const postReplyOnCommentAction = (postId, commentId, reply) => async (dis
 export const postReplyOfCommentDeleteAction = (postId, commentId, replyId) => async (dispatch) => {
       try {
             dispatch({ type: DELETE_REPLY_OF_COMMENT_REQUEST })
-            const { data } = await Axios.delete(`/post/comment/reply/delete?postId=${postId}&commentId=${commentId}&replyId=${replyId}`)
+            const { data } = await Axios.delete(`/api/post/comment/reply/delete?postId=${postId}&commentId=${commentId}&replyId=${replyId}`)
             dispatch({ type: DELETE_REPLY_OF_COMMENT_SUCCESS, payload: data })
       } catch (error) {
             dispatch({ type: DELETE_REPLY_OF_COMMENT_FAIL, payload: error })

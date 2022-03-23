@@ -2,7 +2,7 @@ import {
       GET_TIMELINE_POST_REQUEST,
       GET_TIMELINE_POST_SUCCESS,
       GET_TIMELINE_POST_FAIL,
-      
+
       DO_LIKE_REQUEST,
       DO_LIKE_SUCCESS,
       DO_LIKE_FAIL,
@@ -18,17 +18,17 @@ const Axios = axios.create({
 })
 export const timelinePostAction = () => async (dispatch) => {
       try {
-            dispatch({ type: GET_TIMELINE_POST_REQUEST})
-            const { data } = await Axios.get("/post/timeline")
+            dispatch({ type: GET_TIMELINE_POST_REQUEST })
+            const { data } = await Axios.get("/api/post/timeline")
             dispatch({ type: GET_TIMELINE_POST_SUCCESS, payload: data.timeline })
       } catch (error) {
-            dispatch({ type:GET_TIMELINE_POST_FAIL, payload: error })
+            dispatch({ type: GET_TIMELINE_POST_FAIL, payload: error })
       }
 }
 export const postlikestAction = (id) => async (dispatch) => {
       try {
-            dispatch({ type:DO_LIKE_REQUEST })
-            const { data } = await Axios.put(`/post/like/${id}`)
+            dispatch({ type: DO_LIKE_REQUEST })
+            const { data } = await Axios.put(`/api/post/like/${id}`)
             dispatch({ type: DO_LIKE_SUCCESS, payload: data.success })
       } catch (error) {
             dispatch({ type: DO_LIKE_FAIL, payload: error })

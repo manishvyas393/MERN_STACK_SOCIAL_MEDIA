@@ -27,7 +27,14 @@ app.use(fileUpload({
 app.use(express.json())
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use("/auth", auth)
-app.use("/post", post)
-app.use("/user", users)
-app.listen(3001, () => console.log("running"))
+app.use("/api/auth", auth)
+app.use("/api/post", post)
+app.use("/api/user", users)
+if (process.env.NODE_ENV === "production") {
+      //Set static folder
+      app.use(express.static("insta/build"));
+      app.get("*", (req, res) => {
+            res.sendFile(path.resolve(__dirname, "insta", "build", "index.html"));
+      });
+}
+app.listen(process.env.PORT || 3001, () => console.log("running"))

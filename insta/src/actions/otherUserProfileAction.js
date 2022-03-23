@@ -14,10 +14,10 @@ const Axios = axios.create({
 export const otherUserProfileAction = (username) => async (dispatch) => {
       try {
             dispatch({ type: REQUESTED_USER_PROFILE_REQUEST })
-            const { data } = await Axios.get(`/user/${username}`)
-            dispatch({type:REQUESTED_USER_PROFILE_SUCCESS,payload:data})
+            const { data } = await Axios.get(`/api/user/${username}`)
+            dispatch({ type: REQUESTED_USER_PROFILE_SUCCESS, payload: data })
       } catch (error) {
-            dispatch({type:REQUESTED_USER_PROFILE_FAIL,payload:error})
+            dispatch({ type: REQUESTED_USER_PROFILE_FAIL, payload: error })
       }
 }
 export const clearErrors = () => async (dispatch) => {

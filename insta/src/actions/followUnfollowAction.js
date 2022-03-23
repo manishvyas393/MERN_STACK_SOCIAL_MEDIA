@@ -27,7 +27,7 @@ const Axios = axios.create({
 export const followUnfollowAction = (id) => async (dispatch) => {
       try {
             dispatch({ type: SEND_FOLLOW_UNFOLLOW_REQUEST })
-            const { data } = await Axios.put(`/user/follow/${id}`)
+            const { data } = await Axios.put(`/api/user/follow/${id}`)
             dispatch({ type: SEND_FOLLOW_UNFOLLOW_SUCCESS, payload: data.success })
       } catch (error) {
             dispatch({ type: SEND_FOLLOW_UNFOLLOW_FAIL, payload: error })
@@ -36,7 +36,7 @@ export const followUnfollowAction = (id) => async (dispatch) => {
 export const acceptFollowRequestAction = (id) => async (dispatch) => {
       try {
             dispatch({ type: ACCEPT_FOLLOW_REQUEST })
-            const { data } = await Axios.put(`/user/accept-follow-request/${id}`)
+            const { data } = await Axios.put(`/api/user/accept-follow-request/${id}`)
             dispatch({ type: ACCEPT_FOLLOW_SUCCESS, payload: data })
       } catch (error) {
             dispatch({ type: ACCEPT_FOLLOW_FAIL, payload: error })
@@ -45,7 +45,7 @@ export const acceptFollowRequestAction = (id) => async (dispatch) => {
 export const cancelFollowRequestAction = (id) => async (dispatch) => {
       try {
             dispatch({ type: CANCEL_FOLLOW_REQUEST })
-            const { data } = await Axios.delete(`/user/cancel-follow-request/${id}`)
+            const { data } = await Axios.delete(`/api/user/cancel-follow-request/${id}`)
             dispatch({ type: CANCEL_FOLLOW_SUCCESS, payload: data })
       } catch (error) {
             dispatch({ type: CANCEL_FOLLOW_FAIL, payload: error })
@@ -54,7 +54,7 @@ export const cancelFollowRequestAction = (id) => async (dispatch) => {
 export const removeFollowerRequestAction = (id) => async (dispatch) => {
       try {
             dispatch({ type: REMOVE_FOLLOWER_FROM_FOLLOWERS_REQUEST })
-            const { data } = await Axios.delete(`/user/remove/follower/${id}`)
+            const { data } = await Axios.delete(`/api/user/remove/follower/${id}`)
             dispatch({ type: REMOVE_FOLLOWER_FROM_FOLLOWERS_SUCCESS, payload: data })
       } catch (error) {
             dispatch({ type: REMOVE_FOLLOWER_FROM_FOLLOWERS_FAIL, payload: error })
