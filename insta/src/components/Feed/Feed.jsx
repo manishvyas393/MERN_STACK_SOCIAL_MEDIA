@@ -49,7 +49,7 @@ const Feed = ({ post }) => {
             }
       }, [user?._id, post?.likes, dispatch, commented, error, postDeleted]);
       return (
-            <Box mt={16} px={2} >
+            <Box mt={{base:24,md:36,lg:16}} px={2} >
                   <Box backgroundColor="white" px={2} py={4} key={post._id} shadow="dark-lg" borderRadius={"15px"} >
                         <Flex justifyContent={"space-between"} alignItems="center" position={"relative"} borderBottom="1px" pb={2} borderBottomColor="gray.300">
                               <Box display={"flex"} alignItems="center">

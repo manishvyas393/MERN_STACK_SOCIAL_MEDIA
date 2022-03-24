@@ -24,7 +24,7 @@ const Header = ({ show }) => {
             }
       }
       return (
-            <Flex justifyContent="space-between" px={4} position="fixed" width={{ lg: "30%", sm: "98%" }} backgroundColor="white" mt={-4} boxShadow="md" display={show}>
+            <Flex justifyContent="space-between" px={4} zIndex={11} position="fixed" width={{ lg: "30%", sm: "98%" }} backgroundColor="white" mt={-4} boxShadow="md" py={{base:4,lg:0}}  display={show}>
                   <Box display="flex" alignItems="center" >
                         <Image src={logo} width="50%" height="60%" shadow={"base"} p={2} borderRadius={"50px"}></Image>
                   </Box>

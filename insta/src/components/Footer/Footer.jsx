@@ -14,7 +14,7 @@ const Footer = ({ show }) => {
             <Flex justifyContent="space-between"
                   alignItems="center" px={8} py={3}
                   borderTop="2px" borderTopColor="gray.400" position="fixed"
-                  width={{ lg: "30%", sm: "98%" }} backgroundColor="white"
+                  width={{ lg: "30%",  base: "100%",md:"200%" }} backgroundColor="white"
                   bottom="0px"
                   display={show}
             >
