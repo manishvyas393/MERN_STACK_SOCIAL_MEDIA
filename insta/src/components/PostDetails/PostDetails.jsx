@@ -59,7 +59,7 @@ const PostDetails = () => {
                   navigate("/profile")
                   dispatch({type:DELETE_LOGGED_USER_POST_RESET})
             }
-      }, [dispatch, id, user?._id, liked, commented,postDeleted,navigate,post?.likes]);
+      }, [dispatch, id, user?._id, liked, commented,postDeleted,navigate]);
       return (
             <>
                   {
