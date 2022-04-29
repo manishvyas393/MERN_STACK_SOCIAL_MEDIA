@@ -1,13 +1,19 @@
 const User = require("../model/user")
 const Post = require("../model/posts")
 const cloudinary = require("cloudinary").v2
-const features = require("../utils/features")
-
 exports.searchUser = async (req, res, next) => {
-      const feature = new features(User.find(), req.query).search()
-      let users = await feature.query;
+      console.log(req.user.id)
+      const keyword = req.query.search
+            ? {
+                  $or: [
+                        { username: { $regex: req.query.search, $options: "i" } },
+                        { email: { $regex: req.query.search, $options: "i" } },
+                  ],
+            }
+            : {};
+      const users = await User.find(keyword).find({ _id: { $ne: req.user.id } });
       res.status(200).json({
-            users: users
+            users
       })
 }
 exports.loggedUserPosts = async (req, res, next) => {

@@ -4,10 +4,9 @@ const { searchUser, loggedUserPosts, loggedUserProfile, getOtherUserProfile, upd
 const { followUnfollow, acceptRequest, cancelRequest,removeFollower } = require("../controllers/followUnfollowController")
 const { resetLink } = require("../controllers/auth")
 
-router.get("/getuser", searchUser)
+router.get("/getuser",isAuthenticatedUser, searchUser)
 //get logged user posts
 router.get("/posts", isAuthenticatedUser, loggedUserPosts)
-
 router.get("/profile", isAuthenticatedUser, loggedUserProfile)
 router.get("/:username", isAuthenticatedUser, getOtherUserProfile)
 router.put("/updateprofile/:id", isAuthenticatedUser, updateBasicProfileDetails)
