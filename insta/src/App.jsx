@@ -22,6 +22,8 @@ import PostComments from "./components/PostComments/PostComments";
 import EditPost from "./components/EditPost/EditPost";
 import SendResetLink from "./components/SendResetLinkForm/SendResetLink";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
+import ChatPage from "./components/ChatPage/ChatPage";
+import SingleChat from "./components/SingleChat/SingleChat";
 function App() {
   const user = JSON.parse(localStorage.getItem("user"))
   useEffect(() => {
@@ -44,10 +46,10 @@ function App() {
       <Route path="/followers" element={<ProctectedRoute>
         <FollowTabs />
       </ProctectedRoute>} />
+
       <Route path="/followings" element={<ProctectedRoute>
         <FollowTabs />
       </ProctectedRoute>} />
-
 
       <Route path="/editprofile" element={<ProctectedRoute>
         <EditProfile />
@@ -105,6 +107,13 @@ function App() {
 
       <Route path="/profile/:username/followings" element={<ProctectedRoute>
         <FollowTabs />
+      </ProctectedRoute>} />
+      <Route path="/chats" element={<ProctectedRoute>
+        <ChatPage/>
+      </ProctectedRoute>} />
+
+      <Route path="/chat/:id" element={<ProctectedRoute>
+        <SingleChat/>
       </ProctectedRoute>} />
 
       <Route path="/forgotpassword" element={<SendResetLink />} />  

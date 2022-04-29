@@ -47,8 +47,8 @@ import {
       CLEAR_ERRORS,
 } from "../constants/postConstants"
 const Axios = axios.create({
-     // baseURL: "http://localhost:3001",
-      baseURL: "https://mern-instagram-cloned.herokuapp.com/",
+      baseURL: "http://localhost:3001" | "https://mern-instagram-cloned.herokuapp.com/",
+     // baseURL: "https://mern-instagram-cloned.herokuapp.com/",
       withCredentials: true,
       credentials: "include"
 

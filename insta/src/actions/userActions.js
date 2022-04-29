@@ -43,8 +43,8 @@ import {
       SEARCH_USER_RESET
 } from "../constants/userConstants"
 const Axios = axios.create({
-     // baseURL: "http://localhost:3001",
-     baseURL: "https://mern-instagram-cloned.herokuapp.com/",
+      baseURL: "http://localhost:3001" | "https://mern-instagram-cloned.herokuapp.com/",
+      //baseURL: "https://mern-instagram-cloned.herokuapp.com/",
       withCredentials: true,
       credentials: "include"
 
@@ -111,7 +111,7 @@ export const searchAction = (keyword) => async (dispatch) => {
       try {
             if (keyword !== "") {
                   dispatch({ type: SEARCH_USER_REQUEST })
-                  const { data } = await Axios.get(`/api/user/getuser?keyword=${keyword}`)
+                  const { data } = await Axios.get(`/api/user/getuser?search=${keyword}`)
                   dispatch({ type: SEARCH_USER_SUCCESS, payload: data.users })
             }
             else {

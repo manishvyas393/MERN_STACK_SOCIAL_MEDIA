@@ -1,14 +1,21 @@
 import { Box, Flex, Text, Image, Button, Collapse, useDisclosure, Divider } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AddIcon, WarningIcon, ChatIcon } from "@chakra-ui/icons"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import logo from "../../assests/logo.png"
 import { Backdrop } from '@material-ui/core'
 import { logOutAction } from '../../actions/userActions';
 import { Link } from 'react-router-dom';
+import io from "socket.io-client"
+import { setNotificationAction } from '../../actions/messagesAction'
+let socket;
+const endPoint = "http://localhost:3001"
 const Header = ({ show }) => {
       const [open, setOpen] = useState(false)
       const { isOpen, onToggle } = useDisclosure()
+      const { user } = useSelector(state => state.user)
+      const { currentChat } = useSelector(state => state.selectedChat)
+      const {notifications}=useSelector(state=>state.Notification)
       const dispatch = useDispatch()
       function logout() {
             dispatch(logOutAction())
@@ -23,14 +30,25 @@ const Header = ({ show }) => {
                   setOpen(false)
             }
       }
+      useEffect(() => {
+            socket = io(endPoint)
+            socket.emit("getuser", user?._id)
+            socket.emit("chatroom", currentChat?._id)
+            socket.on("newMsg", (newmsg) => {
+                  console.log(newmsg)
+                  if (!currentChat?._id || currentChat?._id !== newmsg?.chat?._id) {
+                        dispatch(setNotificationAction(newmsg))
+                  }
+            })
+      },[dispatch,currentChat?._id,user?._id])
       return (
-            <Flex justifyContent="space-between" px={4} zIndex={11} position="fixed" width={{ lg: "30%", sm: "98%" }} backgroundColor="white" mt={-4} boxShadow="md" py={{base:4,lg:0}}  display={show}>
+            <Flex justifyContent="space-between" px={4} zIndex={11} position="fixed" width={{ lg: "30%", sm: "98%" }} backgroundColor="white" mt={-4} boxShadow="md" py={{ base: 4, lg: 0 }} display={show}>
                   <Box display="flex" alignItems="center" >
                         <Image src={logo} width="50%" height="60%" shadow={"base"} p={2} borderRadius={"50px"}></Image>
                   </Box>
                   <Box display="flex" justifyContent="center" alignItems="center" >
                         <Collapse in={isOpen}>
-                              <Flex mt={20} boxShadow='dark-lg' alignItems={"center"} rounded='md' flexDirection={"column"} position="absolute" zIndex="10"  py={2} backgroundColor="white" shadow={"base"} left="340px" top="-35px"  cursor="pointer">
+                              <Flex mt={20} boxShadow='dark-lg' alignItems={"center"} rounded='md' flexDirection={"column"} position="absolute" zIndex="10" py={2} backgroundColor="white" shadow={"base"} left="340px" top="-35px" cursor="pointer">
                                     <Link to="/newpost">
                                           <Text px={2} py={1}>New Post</Text>
                                     </Link>
@@ -39,8 +57,14 @@ const Header = ({ show }) => {
 
                               </Flex>
                         </Collapse>
-                        <AddIcon fontSize="40px" px={2} mr={4} shadow={"base"} cursor="pointer" onClick={onToggle} borderRadius="50px"/>
-                        <ChatIcon fontSize="40px" px={2} mr={4} shadow={"base"} cursor="pointer" borderRadius="50px"/>
+                        <AddIcon fontSize="40px" px={2} mr={4} shadow={"base"} cursor="pointer" onClick={onToggle} borderRadius="50px" />
+                        <Link to={"/chats"}>
+                              <>
+                                    <ChatIcon fontSize="40px" px={2} mr={4} shadow={"base"} cursor="pointer" borderRadius="50px" />
+                              {notifications?.length}
+                              </>
+                             
+                        </Link>
                         <WarningIcon fontSize="40px" px={2} mr={4} shadow={"base"} cursor="pointer" borderRadius="50px" onClick={hideShow} />
 
                         <Box position="absolute" mt={52} widt="100%">

@@ -11,8 +11,8 @@ import {
 } from "../constants/timeLineConstants"
 import axios from "axios"
 const Axios = axios.create({
-      //baseURL: "http://localhost:3001",
-      baseURL: "https://mern-instagram-cloned.herokuapp.com/",
+      baseURL: "http://localhost:3001" | "https://mern-instagram-cloned.herokuapp.com/",
+     // baseURL: "https://mern-instagram-cloned.herokuapp.com/",
       withCredentials: true,
       credentials: "include"
 

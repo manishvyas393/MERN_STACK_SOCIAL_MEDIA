@@ -6,6 +6,8 @@ import {createPostAndUpdateReducer, deleteLoggedUserPostReducer, getLoggedUserPo
 import { postLikeReducer, timeLineReducer } from "./reducers/timeLineReducer"
 import { otherUserProfileReducer } from "./reducers/otherUserProfileReducer"
 import { acceptOrCancelFollowRequestReducer, followUnfollowReducer } from "./reducers/followUnfollowReducer"
+import { createChatReducer, getChatsReducer, getSingleChatReducer} from "./reducers/chatReducer"
+import { getMessagesReducer, getNotificationReducer, sendMessageReducer } from "./reducers/messagesReducer"
 const reducer = combineReducers({
       user: loginReducer,
       registration: registrationReducer,
@@ -24,7 +26,13 @@ const reducer = combineReducers({
       acceptOrCancelRequest: acceptOrCancelFollowRequestReducer,
       postComments: getPostCommentsUsersReducer,
       postingComment: postCommentReducer,
-      resetPassword:resetPasswordReducer
+      resetPassword: resetPasswordReducer,
+      newChat:createChatReducer,
+      userChats: getChatsReducer,
+      userMessages: getMessagesReducer,
+      selectedChat: getSingleChatReducer,
+      sendMessage: sendMessageReducer,
+      Notification:getNotificationReducer
 })
 let initialState = {}
 const midleware = [thunk]
