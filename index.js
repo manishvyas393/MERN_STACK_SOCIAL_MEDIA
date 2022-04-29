@@ -47,7 +47,7 @@ const server = app.listen(process.env.PORT || 3001, () => console.log("running")
 const io = new Server(server, ({
       pingTimeout: 600000,
       cors: {
-            origin: "http://localhost:3000"
+            origin: "http://localhost:3000",
       }
 }));
 io.on("connect", (socket) => {
